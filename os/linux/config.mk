@@ -154,7 +154,7 @@ HAS_GREENAP_SUPPORT=n
 #Support MAC80211 LINUX-only function
 #Please make sure the version for CFG80211.ko and MAC80211.ko is same as the one
 #our driver references to.
-HAS_CFG80211_SUPPORT=y
+HAS_CFG80211_SUPPORT=n
 
 #Support RFKILL hardware block/unblock LINUX-only function
 HAS_RFKILL_HW_SUPPORT=n
@@ -668,7 +668,9 @@ ifeq ($(HAS_CSO_SUPPORT), y)
 WFLAGS += -DCONFIG_CSO_SUPPORT -DCONFIG_TSO_SUPPORT
 endif
 
+#Support für TP-Link T2U
 CHIPSET_DAT = 2870
+
 endif
 
 ifneq ($(or $(findstring mt7662e,$(CHIPSET)),$(findstring mt7612e,$(CHIPSET))),)
@@ -836,9 +838,11 @@ endif
 endif
 
 #################################################
+
 ifeq ($(PLATFORM),RASP)
 EXTRA_CFLAGS := $(WFLAGS) -I$(RT28xx_DIR)/include
 endif
+
 
 ifeq ($(PLATFORM),5VT)
 #WFLAGS += -DCONFIG_5VT_ENHANCE
